@@ -15,6 +15,7 @@ class TreeGridAsset extends AssetBundle {
 
     public $js = [
         'js/jquery.treegrid.min.js',
+	    'js/jquery.cookie.js',
     ];
 
     public $css = [

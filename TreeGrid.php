@@ -15,13 +15,6 @@ use yii\helpers\Json;
  */
 class TreeGrid extends GridView
 {
-
-	/**
-	 * @var array the HTML attributes for the container tag of the grid view.
-	 * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
-	 */
-	public $options = ['class' => 'table table-striped table-bordered'];
-
 	/**
 	 * @var array The plugin options
 	 */
@@ -66,7 +59,7 @@ class TreeGrid extends GridView
 		$id = $this->options['id'];
 		$options = Json::htmlEncode($this->pluginOptions);
 		TreeGridAsset::register($this->view);
-		$this->view->registerJs("jQuery('#$id').treegrid($options);");
+		$this->view->registerJs("jQuery('#$id .kv-grid-table').treegrid($options);");
 
 		parent::run();
 	}
@@ -81,6 +74,7 @@ class TreeGrid extends GridView
 	 */
 	public function renderTableRow($model, $key, $index)
 	{
+		$key = $model->{$this->keyColumnName};
 		$cells = [];
 		/* @var $column Column */
 		foreach ($this->columns as $column) {
@@ -91,7 +85,7 @@ class TreeGrid extends GridView
 		} else {
 			$options = $this->rowOptions;
 		}
-		$options['data-key'] = is_array($key) ? json_encode($key) : (string) $key;
+		$options['data-key'] = is_array($key) ? json_encode($key) : (string)$key;
 
 		$id = ArrayHelper::getValue($model, $this->keyColumnName);
 		Html::addCssClass($options, "treegrid-$id");
