@@ -1,0 +1,14 @@
+{
+    "name": "aadutskevich/yii2-treegrid",
+    "type": "yii2-extension",
+    "minimum-stability": "stable",
+    "require": {
+        "yiisoft/yii2": "2.0.*",
+        "bower-asset/jquery-treegrid": "0.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "aadutskevich\\treegrid\\": ""
+        }
+    }
+}
